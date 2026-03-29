@@ -1,0 +1,89 @@
+﻿<Window x:Class="FAJARILLO_FINAL_PROJECT.WINDOWS.WeightBalanceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FAJARILLO_FINAL_PROJECT.WINDOWS"
+        mc:Ignorable="d"
+        Title="WeightBalanceWindow" Height="800" Width="700">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="Cessna 152 Weight and Balance Calculator" 
+               FontSize="24" FontWeight="Bold"
+               Foreground="#2c3e50"
+               HorizontalAlignment="Center"
+               Margin="0,10,0,30"/>
+
+        <!-- Inputs Section -->
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+
+            <!-- Empty Weight -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Basic Empty Weight (lbs):" Width="200" VerticalAlignment="Center"/>
+                <TextBox x:Name="EmptyWeightInput" Width="100" Margin="0,0,15,0"/>
+                <TextBlock Text="Arm (in):" Width="70" VerticalAlignment="Center"/>
+                <TextBox x:Name="EmptyWeightArmInput" Width="80" Text="32.65"/>
+            </StackPanel>
+
+            <!-- Student -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Student Weight (lbs):" Width="200" VerticalAlignment="Center"/>
+                <TextBox x:Name="StudentWeightInput" Width="100" Margin="0,0,15,0"/>
+                <TextBlock Text="Arm (in):" Width="70" VerticalAlignment="Center"/>
+                <TextBox x:Name="StudentArmInput" Width="80" Text="39.0"/>
+            </StackPanel>
+
+            <!-- Instructor -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Instructor Weight (lbs, optional):" Width="200" VerticalAlignment="Center"/>
+                <TextBox x:Name="InstructorWeightInput" Width="100" Margin="0,0,15,0"/>
+                <TextBlock Text="Arm (in):" Width="70" VerticalAlignment="Center"/>
+                <TextBox x:Name="InstructorArmInput" Width="80" Text="39.0"/>
+            </StackPanel>
+
+            <!-- Fuel -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Fuel Weight (lbs):" Width="200" VerticalAlignment="Center"/>
+                <TextBox x:Name="FuelWeightInput" Width="100" Margin="0,0,15,0"/>
+                <TextBlock Text="Arm (in):" Width="70" VerticalAlignment="Center"/>
+                <TextBox x:Name="FuelArmInput" Width="80" Text="42.0"/>
+            </StackPanel>
+
+            <!-- Baggage -->
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Baggage Weight (lbs):" Width="200" VerticalAlignment="Center"/>
+                <TextBox x:Name="BaggageWeightInput" Width="100" Margin="0,0,15,0"/>
+                <TextBlock Text="Arm (in):" Width="70" VerticalAlignment="Center"/>
+                <TextBox x:Name="BaggageArmInput" Width="80" Text="64.0"/>
+            </StackPanel>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0">
+                <Button Content="Back" Width="120" Height="40" Margin="10,0"
+                    Background="#bdc3c7" Foreground="Black" FontWeight="SemiBold"
+                    Click="Back_Click"/>
+                <Button Content="Calculate" Width="150" Height="40" Margin="10,0"
+                    Background="#2ecc71" Foreground="White" FontWeight="SemiBold"
+                    Click="Calculate_Click" IsDefault="True"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Results Section -->
+        <Border Grid.Row="2" Background="White" CornerRadius="8" Padding="20" Margin="0,30,0,0" 
+            BorderBrush="#dfe6e9" BorderThickness="1">
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="ResultTotalWeight" FontSize="16" Margin="0,5"/>
+                <TextBlock x:Name="ResultTotalMoment" FontSize="16" Margin="0,5"/>
+                <TextBlock x:Name="ResultCG" FontSize="16" Margin="0,5"/>
+                <TextBlock x:Name="ResultStatus" FontSize="18" FontWeight="Bold" Margin="0,10"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

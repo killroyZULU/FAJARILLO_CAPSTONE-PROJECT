@@ -1,0 +1,4 @@
+Lee|lee123|lee@gmail.com|123456|08/23/2025|False
+Lee Adrian Fajarillo|leefaja1174|fajarillolee@gmail.com|Fordiks03_|8/23/2025|True
+Lee Adrian|leeAdri1174|leesttikerz4343@gmail.com|Fordiks03_|8/28/2025|True
+Lee Adrian Fajarillo|LeeFaja1174_|22-0366c@sgen.edu.ph|Fordiks03_|8/28/2025|True

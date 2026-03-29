@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="FAJARILLO_FINAL_PROJECT.USER_CONTROL_ELEMENTS.CalendarInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FAJARILLO_FINAL_PROJECT.USER_CONTROL_ELEMENTS"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="35" d:DesignWidth="800">
+    <Grid>
+        <Grid>
+            <!-- TextBox (readonly) -->
+            <TextBox x:Name="DateTextBox"
+           IsReadOnly="True"
+           VerticalContentAlignment="Center"
+           Padding="10,0,35,0"/>
+
+            <!-- Placeholder Text -->
+            <TextBlock x:Name="PlaceholderText"
+             Text="Birthday"
+             FontWeight="Light"
+             FontSize="16"
+             HorizontalAlignment="Center"
+             Foreground="DarkGray"
+             VerticalAlignment="Center"
+             IsHitTestVisible="False"
+             Visibility="Visible"/>
+
+            <!-- Calendar Button -->
+            <Button x:Name="OpenCalendarButton"
+          Width="25"
+          Height="25"
+          Content="📅"
+          FontSize="14"
+          HorizontalAlignment="Right"
+          VerticalAlignment="Center"
+          Margin="5"
+          Click="OpenCalendarButton_Click"/>
+
+            <!-- Popup Calendar -->
+            <Popup x:Name="CalendarPopup"
+         Placement="Bottom"
+         StaysOpen="False"
+         PlacementTarget="{Binding ElementName=OpenCalendarButton}">
+                <Border BorderBrush="Gray" BorderThickness="1" Background="White">
+                    <Calendar x:Name="CalendarControl"
+                    DisplayDateEnd="{x:Static System:DateTime.Now}"
+                    SelectedDatesChanged="CalendarControl_SelectedDatesChanged"/>
+                </Border>
+            </Popup>
+        </Grid>
+    </Grid>
+</UserControl>

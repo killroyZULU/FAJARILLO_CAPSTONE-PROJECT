@@ -1,0 +1,421 @@
+<Window x:Class="FAJARILLO_FINAL_PROJECT.WINDOWS.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Preflight Documentation Dashboard"
+        Height="860"
+        Width="1380"
+        WindowStartupLocation="CenterScreen"
+        Background="#EEF3F7">
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" CornerRadius="18" Padding="20" Margin="0,0,0,16">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Left">
+                    <TextBlock x:Name="WelcomeText" FontSize="28" FontWeight="Bold" Foreground="#16324F"/>
+                    <TextBlock x:Name="RoleSummaryText" Margin="0,6,0,0" Foreground="#5A6E80"/>
+                </StackPanel>
+                <Button DockPanel.Dock="Right" Width="130" Height="36" Content="Log Out" Background="#D95D39" Foreground="White" BorderThickness="0" Click="LogOut_Click"/>
+            </DockPanel>
+        </Border>
+
+        <TabControl Grid.Row="1" Background="Transparent">
+            <TabItem Header="Overview">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <UniformGrid Grid.Row="0" Columns="4" Margin="0,0,0,16">
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,12,0">
+                            <StackPanel>
+                                <TextBlock Text="Users" FontWeight="SemiBold" Foreground="#5A6E80"/>
+                                <TextBlock x:Name="OverviewUsersText" FontSize="28" FontWeight="Bold" Foreground="#16324F"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,12,0">
+                            <StackPanel>
+                                <TextBlock Text="Aircraft" FontWeight="SemiBold" Foreground="#5A6E80"/>
+                                <TextBlock x:Name="OverviewAircraftText" FontSize="28" FontWeight="Bold" Foreground="#16324F"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,12,0">
+                            <StackPanel>
+                                <TextBlock Text="Preflight Records" FontWeight="SemiBold" Foreground="#5A6E80"/>
+                                <TextBlock x:Name="OverviewRecordsText" FontSize="28" FontWeight="Bold" Foreground="#16324F"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" CornerRadius="16" Padding="18">
+                            <StackPanel>
+                                <TextBlock Text="Pending Review" FontWeight="SemiBold" Foreground="#5A6E80"/>
+                                <TextBlock x:Name="OverviewPendingText" FontSize="28" FontWeight="Bold" Foreground="#16324F"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <Border Grid.Row="1" Background="White" CornerRadius="16" Padding="22">
+                        <StackPanel>
+                            <TextBlock Text="What This Build Covers" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                            <TextBlock Margin="0,12,0,0" TextWrapping="Wrap" Foreground="#44576A"
+                                       Text="Digital replication of preflight forms, structured flight and weather entry, real-time validation, aircraft and pilot expiry alerts, automated weight and balance verification, historical record retrieval, instructor review access, and admin management of users and aircraft."/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="New Preflight">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.2*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,16,0">
+                        <StackPanel>
+                            <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Flight Overview" FontSize="20" FontWeight="Bold" Foreground="#16324F" Margin="0,0,0,14"/>
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,12">
+                                        <TextBlock Text="Date of Flight" FontWeight="SemiBold"/>
+                                        <DatePicker x:Name="FlightDatePicker" Margin="0,6,0,0" SelectedDateChanged="FormSelectionChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,12">
+                                        <TextBlock Text="Lesson Code" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="LessonCodeTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,12,12">
+                                        <TextBlock Text="Departure Aerodrome" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="DepartureTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,12">
+                                        <TextBlock Text="Arrival Aerodrome" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="ArrivalTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,12,0">
+                                        <TextBlock Text="Student" FontWeight="SemiBold"/>
+                                        <ComboBox x:Name="StudentComboBox" Margin="0,6,0,0" SelectionChanged="FormSelectionChanged" DisplayMemberPath="Name" SelectedValuePath="UserName"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="3" Grid.Column="1">
+                                        <TextBlock Text="Instructor" FontWeight="SemiBold"/>
+                                        <ComboBox x:Name="InstructorComboBox" Margin="0,6,0,0" SelectionChanged="FormSelectionChanged" DisplayMemberPath="Name" SelectedValuePath="UserName"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.ColumnSpan="3" Text="Meteorological Data" FontSize="20" FontWeight="Bold" Foreground="#16324F" Margin="0,0,0,14"/>
+                                    <StackPanel Grid.Column="0" Margin="0,34,12,0">
+                                        <TextBlock Text="Home Airport METAR" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="HomeMetarTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Home Airport TAF" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="HomeTafTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Home Airport NOTAMs" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="HomeNotamsTextBox" Margin="0,6,0,0" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="0,34,12,0">
+                                        <TextBlock Text="Alternate Airport METAR" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AlternateMetarTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Alternate Airport TAF" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AlternateTafTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Alternate Airport NOTAMs" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AlternateNotamsTextBox" Margin="0,6,0,0" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" Margin="0,34,0,0">
+                                        <TextBlock Text="Airwork Area METAR" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AirworkMetarTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Airwork Area TAF" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AirworkTafTextBox" Margin="0,6,0,12" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                        <TextBlock Text="Airwork Area NOTAMs" FontWeight="SemiBold"/>
+                                        <TextBox x:Name="AirworkNotamsTextBox" Margin="0,6,0,0" Padding="10,6" AcceptsReturn="True" Height="72" TextWrapping="Wrap" TextChanged="FormTextChanged"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Aircraft and Weight &amp; Balance" FontSize="20" FontWeight="Bold" Foreground="#16324F" Margin="0,0,0,14"/>
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,12,12">
+                                        <TextBlock Text="Aircraft" FontWeight="SemiBold"/>
+                                        <ComboBox x:Name="AircraftComboBox" Margin="0,6,0,0" SelectionChanged="AircraftComboBox_SelectionChanged" DisplayMemberPath="DisplayName" SelectedValuePath="Registration"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" x:Name="AircraftLimitsTextBlock" Margin="0,28,0,0" Foreground="#5A6E80" TextWrapping="Wrap"/>
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                            <TextBlock Text="Student Weight (lbs)" FontWeight="SemiBold"/>
+                                            <TextBox x:Name="StudentWeightTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                                            <TextBlock Text="Instructor Weight (lbs)" FontWeight="SemiBold"/>
+                                            <TextBox x:Name="InstructorWeightTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Margin="0,0,12,0">
+                                            <TextBlock Text="Fuel Weight (lbs)" FontWeight="SemiBold"/>
+                                            <TextBox x:Name="FuelWeightTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="3">
+                                            <TextBlock Text="Baggage Weight (lbs)" FontWeight="SemiBold"/>
+                                            <TextBox x:Name="BaggageWeightTextBox" Margin="0,6,0,0" Padding="10,6" TextChanged="FormTextChanged"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Column="1">
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                            <StackPanel>
+                                <TextBlock Text="Real-Time Validation" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBlock x:Name="FormValidationTextBlock" Margin="0,12,0,0" TextWrapping="Wrap" Foreground="#C0392B"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                            <StackPanel>
+                                <TextBlock Text="Expiry Alerts" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBlock x:Name="ExpiryAlertsTextBlock" Margin="0,12,0,0" TextWrapping="Wrap" Foreground="#C0392B"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                            <StackPanel>
+                                <TextBlock Text="Calculated Result" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBlock x:Name="WeightResultTextBlock" Margin="0,12,0,6" TextWrapping="Wrap" Foreground="#44576A"/>
+                                <TextBlock x:Name="WeightStatusTextBlock" FontWeight="Bold" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                        <Button Content="Submit Preflight Record" Height="42" Background="#0E7490" Foreground="White" BorderThickness="0" Click="SubmitRecord_Click"/>
+                        <Button Content="Clear Form" Height="42" Margin="0,10,0,0" Background="#DDE7EF" Foreground="#16324F" BorderThickness="0" Click="ClearForm_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Records">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Background="White" CornerRadius="16" Padding="18" Margin="0,0,0,14">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                <TextBlock Text="Student Filter" FontWeight="SemiBold"/>
+                                <ComboBox x:Name="RecordStudentFilterComboBox" Margin="0,6,0,0" SelectionChanged="RecordFilterChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                                <TextBlock Text="Aircraft Filter" FontWeight="SemiBold"/>
+                                <ComboBox x:Name="RecordAircraftFilterComboBox" Margin="0,6,0,0" SelectionChanged="RecordFilterChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="0,0,12,0">
+                                <TextBlock Text="Status Filter" FontWeight="SemiBold"/>
+                                <ComboBox x:Name="RecordStatusFilterComboBox" Margin="0,6,0,0" SelectionChanged="RecordFilterChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Margin="0,0,12,0">
+                                <TextBlock Text="From Date" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="RecordFromDatePicker" Margin="0,6,0,0" SelectedDateChanged="RecordFilterChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="4" Margin="0,0,12,0">
+                                <TextBlock Text="To Date" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="RecordToDatePicker" Margin="0,6,0,0" SelectedDateChanged="RecordFilterChanged"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="5">
+                                <TextBlock Text="Sort" FontWeight="SemiBold"/>
+                                <ComboBox x:Name="RecordSortComboBox" Width="160" Margin="0,6,0,0" SelectionChanged="RecordFilterChanged">
+                                    <ComboBoxItem Content="Latest First"/>
+                                    <ComboBoxItem Content="Earliest First"/>
+                                    <ComboBoxItem Content="Student A-Z"/>
+                                    <ComboBoxItem Content="Aircraft A-Z"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="White" CornerRadius="16" Padding="10" Margin="0,0,14,0">
+                            <ListView x:Name="RecordsListView" SelectionChanged="RecordsListView_SelectionChanged">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Flight Date" DisplayMemberBinding="{Binding FlightDateDisplay}" Width="100"/>
+                                        <GridViewColumn Header="Student" DisplayMemberBinding="{Binding StudentUsername}" Width="120"/>
+                                        <GridViewColumn Header="Instructor" DisplayMemberBinding="{Binding InstructorUsername}" Width="120"/>
+                                        <GridViewColumn Header="Aircraft" DisplayMemberBinding="{Binding AircraftRegistration}" Width="120"/>
+                                        <GridViewColumn Header="Lesson" DisplayMemberBinding="{Binding LessonCode}" Width="90"/>
+                                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="90"/>
+                                        <GridViewColumn Header="W&amp;B" DisplayMemberBinding="{Binding WeightBalanceDisplay}" Width="140"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Border>
+                        <Border Grid.Column="1" Background="White" CornerRadius="16" Padding="18">
+                            <StackPanel>
+                                <TextBlock Text="Record Details" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBox x:Name="RecordDetailsTextBox" Margin="0,12,0,12" Height="420" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                                <TextBlock Text="Review Notes" FontWeight="SemiBold"/>
+                                <TextBox x:Name="ReviewNotesTextBox" Margin="0,6,0,12" Height="80" TextWrapping="Wrap" AcceptsReturn="True"/>
+                                <Button x:Name="MarkReviewedButton" Content="Mark Selected Record Reviewed" Height="40" Background="#2E8B57" Foreground="White" BorderThickness="0" Click="MarkReviewed_Click"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <TextBlock Grid.Row="2" x:Name="RecordSummaryTextBlock" Margin="0,14,0,0" Foreground="#44576A"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="UserManagementTab" Header="Users">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="White" CornerRadius="16" Padding="18" Margin="0,0,14,0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="Account Management" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBlock Text="Create or update student, instructor, and admin accounts." Margin="0,10,0,18" Foreground="#5A6E80"/>
+                                <TextBlock Text="Full Name" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AdminUserNameTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Username" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AdminUsernameTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Email" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AdminEmailTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Password" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AdminPasswordTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Birthdate" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AdminBirthdatePicker" Margin="0,6,0,12"/>
+                                <TextBlock Text="Role" FontWeight="SemiBold"/>
+                                <ComboBox x:Name="AdminRoleComboBox" Margin="0,6,0,12"/>
+                                <TextBlock Text="License Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AdminLicenseExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock Text="Medical Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AdminMedicalExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock Text="Instructor Certification Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AdminInstructorExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock x:Name="AdminUserMessageTextBlock" Margin="0,0,0,12" Foreground="#C0392B" TextWrapping="Wrap"/>
+                                <Button Content="Save User" Height="40" Background="#0E7490" Foreground="White" BorderThickness="0" Click="SaveUser_Click"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                    <Border Grid.Column="1" Background="White" CornerRadius="16" Padding="10">
+                        <ListView x:Name="UsersListView" SelectionChanged="UsersListView_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="180"/>
+                                    <GridViewColumn Header="Username" DisplayMemberBinding="{Binding UserName}" Width="120"/>
+                                    <GridViewColumn Header="Role" DisplayMemberBinding="{Binding Role}" Width="90"/>
+                                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="180"/>
+                                    <GridViewColumn Header="License Expiry" DisplayMemberBinding="{Binding LicenseExpiryDate}" Width="120"/>
+                                    <GridViewColumn Header="Medical Expiry" DisplayMemberBinding="{Binding MedicalExpiryDate}" Width="120"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="AircraftManagementTab" Header="Aircraft">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1.4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Background="White" CornerRadius="16" Padding="18" Margin="0,0,14,0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="Aircraft Database" FontSize="20" FontWeight="Bold" Foreground="#16324F"/>
+                                <TextBlock Text="Manage aircraft limits, balance arms, registration details, and document expirations." Margin="0,10,0,18" Foreground="#5A6E80"/>
+                                <TextBlock Text="Registration" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftRegistrationTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Aircraft Type" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftTypeTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Maximum Takeoff Weight" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftMaxWeightTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Minimum CG" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftMinCgTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Maximum CG" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftMaxCgTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Basic Empty Weight" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftEmptyWeightTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Basic Empty Arm" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftEmptyArmTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Front Seat Arm" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftFrontSeatArmTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Fuel Arm" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftFuelArmTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Baggage Arm" FontWeight="SemiBold"/>
+                                <TextBox x:Name="AircraftBaggageArmTextBox" Margin="0,6,0,12" Padding="10,6"/>
+                                <TextBlock Text="Airworthiness Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AircraftAirworthinessExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock Text="Registration Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AircraftRegistrationExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock Text="Insurance Expiry" FontWeight="SemiBold"/>
+                                <DatePicker x:Name="AircraftInsuranceExpiryPicker" Margin="0,6,0,12"/>
+                                <TextBlock x:Name="AircraftMessageTextBlock" Margin="0,0,0,12" Foreground="#C0392B" TextWrapping="Wrap"/>
+                                <Button Content="Save Aircraft" Height="40" Background="#0E7490" Foreground="White" BorderThickness="0" Click="SaveAircraft_Click"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                    <Border Grid.Column="1" Background="White" CornerRadius="16" Padding="10">
+                        <ListView x:Name="AircraftListView" SelectionChanged="AircraftListView_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Registration" DisplayMemberBinding="{Binding Registration}" Width="110"/>
+                                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding AircraftType}" Width="130"/>
+                                    <GridViewColumn Header="MTOW" DisplayMemberBinding="{Binding MaxTakeoffWeight}" Width="90"/>
+                                    <GridViewColumn Header="CG Min" DisplayMemberBinding="{Binding MinCg}" Width="80"/>
+                                    <GridViewColumn Header="CG Max" DisplayMemberBinding="{Binding MaxCg}" Width="80"/>
+                                    <GridViewColumn Header="Airworthiness Expiry" DisplayMemberBinding="{Binding AirworthinessExpiryDate}" Width="140"/>
+                                    <GridViewColumn Header="Insurance Expiry" DisplayMemberBinding="{Binding InsuranceExpiryDate}" Width="140"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
